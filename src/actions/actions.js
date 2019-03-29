@@ -1,5 +1,9 @@
-const nowPlayingMovies = (movies) => ({
+export const nowPlayingMovies = (movies) => ({
     type: "NOW_PLAYING",
-    nowPlayingMovies
+    movies
+})
 
+export const topRatedMovies = (movies) => ({
+    type: "TOP_RATED",
+    movies
 })
