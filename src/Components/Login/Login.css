@@ -1,0 +1,145 @@
+/* .login-heading{
+    z-index: 1;
+    position: absolute;
+    right: 200px;
+    background: pink;
+    top: 200px;
+    height: 500px;
+    border: 10px solid red;
+    width:500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.error-message{
+    color:black;
+}
+
+form input{
+    height: 40px;
+    font-size: 20px;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+}
+
+form button{
+    height: 45px;
+    margin-bottom: 20px;
+    font-size: 30px; 
+    text-transform: uppercase;
+    border-radius: 50px;
+    background-color: #e50914;
+    color: white;
+    border: 1px solid white;
+    width: 100%;   
+}
+
+form button:hover{
+    background-color: #FFCC33;
+}
+
+form button:focus {
+    outline:0;
+}
+
+.input-box{
+    display: flex;
+    padding: 10px;
+    background-color: white;
+    margin-bottom: 22px;
+    justify-content: space-between;
+}
+
+.input-box input:focus {
+    outline: 0;
+}
+
+.input-box img {
+    width: 45px;
+    height: 48px;
+}
+
+.login {
+    display: flex;
+    background-color: #333;
+    /* background: url("../images/popcorn.jpg"); */
+    background-size: cover;
+    height: 700px;
+    width: 100%;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    /* opacity: 0.4; */
+    z-index: 1;
+    position: fixed;
+    right: 460px;
+    background: pink;
+    top: 200px;
+    height: 500px;
+    border: 10px solid red;
+    width:500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.login h3{
+    
+    border-bottom:6ps solid white;
+}
+
+/* .login-box {
+    width: 30%;
+    background-color: black;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    left: 18%;
+    height: 500px;
+    padding: 20px;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    width: 30%;
+    height: 500px;
+    padding: 20px;
+    border: 10px solid black;
+
+    
+    
+} */
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-header h3 {
+    font-size: 23px;
+}
+
+.password-link{
+    color:white;
+    text-decoration: underline;    
+}
+.login-box{
+    width: 30%;
+    background-color: black;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    left: 35%;
+    height: 500px;
+    padding: 20px;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    background-color: white;
+    width: 60%;
+    height: 460px;
+    padding: 20px;
+    /* border: 10px solid black; */
+}
+
