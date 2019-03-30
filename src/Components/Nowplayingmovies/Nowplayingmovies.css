@@ -1,0 +1,14 @@
+.now-playing-section{
+    width:100%;
+    display: flex;
+}
+.movie-section{
+    margin-bottom: 20px;
+}
+
+.movie:hover{
+    transform: scale(1.15);
+}
+        /* .gallery-image:hover {
+            transform: scale(1.15);
+        } */

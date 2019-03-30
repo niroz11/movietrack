@@ -1,0 +1,7 @@
+.popularMovies{
+    width:100%;
+    display: flex;
+}
+.movie-section{
+    margin-bottom: 20px;
+}

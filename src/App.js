@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
-import { Login } from './Components/Login'
-import  Nowplayingmovies  from './Components/Nowplayingmovies'
+import { Login } from './Components/Login/Login'
+import  Nowplayingmovies  from './Components/Nowplayingmovies/Nowplayingmovies'
+import Toprated from './Components/Toprated/Toprated'
+import Popularmovies from './Components/Popularmovies/Popularmovies'
 import { APIkey } from './utils/APIkey'
 import { fetchOptions } from './utils/fetchOptions'
 import { fetchData } from './utils/fetchData'
@@ -70,21 +72,27 @@ class App extends Component {
         <header className="App-header">
           <div className="heading-title">
             <h1>MovieTrack</h1>
+            
           </div>
           <div>
             <NavLink to="/Login" className="login-button">Login</NavLink>
             <NavLink to="/signup" className ="signup-button">Signup</NavLink>
             <Route path='/Login' component = {Login}/>
-            <Route exact path='/' component={Nowplayingmovies}/>
+            <Route exact path='/Nowplaying' component={Nowplayingmovies}/>
           </div>
         </header>
         <section className="movies-container">
-         <div className="now-playing">
+         <div className="now-playing movie-section">
+         <h1>Now playing movies</h1>
             <Nowplayingmovies/>
          </div>
-         <div className="popular-movies">
+         <div className="toprated-movies movie-section">
+         <h1>Top rated movies</h1>
+          <Toprated/>
          </div>
-         <div className="toprated-movies">
+         <div className="popular-movies movie-section">
+         <h1>Popular movies</h1>
+         <Popularmovies/>
          </div>
         
         </section>
