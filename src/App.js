@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
 import { Login } from './Components/Login'
-import { Nowplayingmovies } from './Components/Nowplayingmovies'
+import  Nowplayingmovies  from './Components/Nowplayingmovies'
 import { APIkey } from './utils/APIkey'
 import { fetchOptions } from './utils/fetchOptions'
 import { fetchData } from './utils/fetchData'
 import { connect } from 'react-redux'
-import { nowPlayingMovies, topRatedMovies } from './actions/actions'
+import { nowPlayingMovies, topRatedMovies, popularMovies } from './actions/actions'
 
 
 class App extends Component {
@@ -20,6 +20,7 @@ class App extends Component {
   componentDidMount = () => {
     this.fetchNowPlayingMovies()
     this.fetchTopRatedMovies()
+    this.fetchPopularMovies()
   }
 
   fetchNowPlayingMovies = async () => {
@@ -38,7 +39,22 @@ class App extends Component {
       const options = await fetchOptions('GET')
       const movies = await fetchData(url,options)
       this.props.topRatedMovies(movies.results)
-      console.log(movies.results, "toprated")
+      
+
+    }catch(error){
+      this.setState({
+        error: error.message
+      })
+    }
+  }
+
+  fetchPopularMovies = async() => {
+    const url = "https://api.themoviedb.org/3/movie/popular?api_key=93b214404de014118b64ce033e70ac99&language=en-US&page=1"
+    try{
+      const options = await fetchOptions('GET')
+      const movies = await fetchData(url,options)
+      this.props.popularMovies(movies.results)
+      
 
     }catch(error){
       this.setState({
@@ -48,9 +64,7 @@ class App extends Component {
   }
    
   render() {
-    console.log(this.props, "props")
-    console.log(this.props.state, "state")
-
+    console.log(this.props, "app props")
     return (
       <div className="App">
         <header className="App-header">
@@ -64,8 +78,14 @@ class App extends Component {
             <Route exact path='/' component={Nowplayingmovies}/>
           </div>
         </header>
-        <section className="movies-section">
-         
+        <section className="movies-container">
+         <div className="now-playing">
+            <Nowplayingmovies/>
+         </div>
+         <div className="popular-movies">
+         </div>
+         <div className="toprated-movies">
+         </div>
         
         </section>
         
@@ -76,7 +96,8 @@ class App extends Component {
 
 export const mapDispatchToProps = (dispatch) => ({
   nowPlayingMovies: (movies) => dispatch(nowPlayingMovies(movies)),
-  topRatedMovies: (movies) => dispatch(topRatedMovies(movies))
+  topRatedMovies: (movies) => dispatch(topRatedMovies(movies)),
+  popularMovies: (movies) => dispatch(popularMovies(movies))
   
 })
 

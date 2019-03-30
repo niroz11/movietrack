@@ -7,3 +7,8 @@ export const topRatedMovies = (movies) => ({
     type: "TOP_RATED",
     movies
 })
+
+export const popularMovies = (movies) => ({
+    type: "POPULAR_MOVIES",
+    movies
+})
