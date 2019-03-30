@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Card from './Card'
 
 
 export class Nowplayingmovies extends Component {
@@ -8,9 +9,12 @@ export class Nowplayingmovies extends Component {
     }
     
     render(){
-        console.log(this.props.nowPlaying, "nowplaying")
+        
+        const movies = this.props.nowPlaying.map((e) => {
+            return <Card movies={e}/>
+        })
         return(
-        <div>Now playing movies</div>
+            <div>{movies}</div>
         )
     }
 }
