@@ -8,9 +8,8 @@ export class Card extends Component{
         const {movies} = this.props
         const poster = movies.poster_path
         const path = `https://image.tmdb.org/t/p/w185/${poster}`
-        console.log(movies, "card props")
         return(
-            <div class="movie-card">
+            <div className="movie-card">
                 
                 <img src={path}></img>
             </div>
