@@ -13,11 +13,10 @@ export const popularMovies = (movies) => ({
     movies
 })
 
-export const updateUser  = (id,name,favorites) => ({
+export const updateUser = (id) => ({
     type: "UPDATE_USER",
-    id,
-    name,
-    favorites
+    id
+
 })
 
 export const logOutUser = () => ({

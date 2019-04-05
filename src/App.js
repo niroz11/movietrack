@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
-import { Login } from './Components/Login/Login'
+import  Login  from './Components/Login/Login'
 import  Nowplayingmovies  from './Components/Nowplayingmovies/Nowplayingmovies'
 import Toprated from './Components/Toprated/Toprated'
 import Popularmovies from './Components/Popularmovies/Popularmovies'
@@ -11,9 +11,10 @@ import { connect } from 'react-redux'
 import { nowPlayingMovies, topRatedMovies, popularMovies } from './actions/actions'
 
 
-class App extends Component {
-  constructor(){
-    super()
+
+export class App extends Component {
+  constructor(props){
+    super(props)
     this.state={
       error:''
     }
@@ -30,6 +31,7 @@ class App extends Component {
     const options = await fetchOptions('GET')
     const movies = await fetchData(APIkey,options)
     this.props.nowPlayingMovies(movies.results)
+
     } catch(error){
       this.setState({error: error.message})
     }
@@ -66,17 +68,19 @@ class App extends Component {
   }
    
   render() {
+    console.log(this.props, "app props")
     return (
       <div className="App">
         <header className="App-header">
           <div className="heading-title">
             <h1>MovieTrack</h1>
+            {/* (props)=> <Login {...props} /> */}
             
           </div>
           <div>
             <NavLink to="/Login" className="login-button">Login</NavLink>
             <NavLink to="/signup" className ="signup-button">Signup</NavLink>
-            <Route path='/Login' component = {Login}/>
+            <Route path='/Login'  component = { Login }/>
             <Route exact path='/Nowplaying' component={Nowplayingmovies}/>
           </div>
         </header>
