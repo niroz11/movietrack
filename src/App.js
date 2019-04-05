@@ -81,7 +81,8 @@ export class App extends Component {
             <NavLink to="/Login" className="login-button">Login</NavLink>
             <NavLink to="/signup" className ="signup-button">Signup</NavLink>
             <Route path='/Login'  component = { Login }/>
-            <Route exact path='/Nowplaying' component={Nowplayingmovies}/>
+            
+            
           </div>
         </header>
         <section className="movies-container">

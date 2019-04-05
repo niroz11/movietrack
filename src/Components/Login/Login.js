@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import user from '../../Assets/Images/user.png'
 import password from '../../Assets/Images/password-icon.png'
 import './Login.css'
+import { fetchUserFavorites } from '../../utils/fetchFavorites';
 
 class Login extends Component {
     constructor(props) {
@@ -40,10 +41,15 @@ class Login extends Component {
             console.log(result, "staus")
             if (result.status === "success") {
                 this.setState({
-                    id: !this.state.id
+                    id: !this.state.id,
+                    error: ''
                 })
-                this.props.updateUser(result.data.id)
+                const favorites = await fetchUserFavorites(result.data.id)
+                this.props.updateUser(result.data.id, result.data.email, favorites )
+                
             }
+            
+              
         }
         catch (error) {
             return this.setState({ error: "Email and Password do not match. Please try again or Signup." })
@@ -52,6 +58,7 @@ class Login extends Component {
 
     render() {
         
+        console.log(this.props.user.id, "user state")
         return (
             <div className="login">
                 <div className="login-box">
@@ -79,12 +86,13 @@ class Login extends Component {
                                 onChange={this.handleChange}
                             />
                         </div>
-                        <button onClick={this.handleSubmit}>Submit</button>
+                        <button onClick={this.handleSubmit} >Submit</button>
                         <p className="error-message">{this.state.error && this.state.error}</p>
+                        
                     </form>
                 </div>
+                {this.props.user.id && <Redirect to="/" />}
             </div>
-
         )
     }
 }
@@ -95,7 +103,8 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-    updateUser: (id) => dispatch(updateUser(id)),
+    updateUser: (id,email,favorites) => dispatch(updateUser(id,email,favorites))
+    
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
