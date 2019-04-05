@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
 import  Login  from './Components/Login/Login'
+import Signup from './Components/Signup/Signup'
 import  Nowplayingmovies  from './Components/Nowplayingmovies/Nowplayingmovies'
 import Toprated from './Components/Toprated/Toprated'
 import Popularmovies from './Components/Popularmovies/Popularmovies'
@@ -81,6 +82,7 @@ export class App extends Component {
             <NavLink to="/Login" className="login-button">Login</NavLink>
             <NavLink to="/signup" className ="signup-button">Signup</NavLink>
             <Route path='/Login'  component = { Login }/>
+            <Route path='/Signup'  component = { Signup }/>
             
             
           </div>

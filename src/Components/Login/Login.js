@@ -45,7 +45,7 @@ class Login extends Component {
                     error: ''
                 })
                 const favorites = await fetchUserFavorites(result.data.id)
-                this.props.updateUser(result.data.id, result.data.email, favorites )
+                this.props.updateUser(result.data.id, result.data.email, favorites)
                 
             }
             
