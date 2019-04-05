@@ -57,7 +57,8 @@ class Login extends Component {
     }
 
     render() {
-        
+        // {this.props.user.id && <Redirect to="/" />}
+        if(this.props.user.id) return <Redirect to="/" />
         console.log(this.props.user.id, "user state")
         return (
             <div className="login">
@@ -86,12 +87,12 @@ class Login extends Component {
                                 onChange={this.handleChange}
                             />
                         </div>
-                        <button onClick={this.handleSubmit} >Submit</button>
+                        <button>Submit</button>
                         <p className="error-message">{this.state.error && this.state.error}</p>
                         
                     </form>
                 </div>
-                {this.props.user.id && <Redirect to="/" />}
+                {/* {this.props.user.id && <Redirect to="/" />} */}
             </div>
         )
     }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
-import  Login  from './Components/Login/Login'
+import Login from './Components/Login/Login'
 import Signup from './Components/Signup/Signup'
-import  Nowplayingmovies  from './Components/Nowplayingmovies/Nowplayingmovies'
+import Nowplayingmovies from './Components/Nowplayingmovies/Nowplayingmovies'
 import Toprated from './Components/Toprated/Toprated'
 import Popularmovies from './Components/Popularmovies/Popularmovies'
 import { APIkey } from './utils/APIkey'
@@ -10,14 +10,15 @@ import { fetchOptions } from './utils/fetchOptions'
 import { fetchData } from './utils/fetchData'
 import { connect } from 'react-redux'
 import { nowPlayingMovies, topRatedMovies, popularMovies } from './actions/actions'
+import Moviedetails from './Components/Moviedetails/Moviedetails';
 
 
 
 export class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state={
-      error:''
+    this.state = {
+      error: ''
     }
   }
 
@@ -28,46 +29,46 @@ export class App extends Component {
   }
 
   fetchNowPlayingMovies = async () => {
-    try{
-    const options = await fetchOptions('GET')
-    const movies = await fetchData(APIkey,options)
-    this.props.nowPlayingMovies(movies.results)
+    try {
+      const options = await fetchOptions('GET')
+      const movies = await fetchData(APIkey, options)
+      this.props.nowPlayingMovies(movies.results)
 
-    } catch(error){
-      this.setState({error: error.message})
+    } catch (error) {
+      this.setState({ error: error.message })
     }
   }
 
-  fetchTopRatedMovies = async() => {
+  fetchTopRatedMovies = async () => {
     const url = "https://api.themoviedb.org/3/movie/top_rated?api_key=93b214404de014118b64ce033e70ac99&language=en-US&page=1"
-    try{
+    try {
       const options = await fetchOptions('GET')
-      const movies = await fetchData(url,options)
+      const movies = await fetchData(url, options)
       this.props.topRatedMovies(movies.results)
-      
 
-    }catch(error){
+
+    } catch (error) {
       this.setState({
         error: error.message
       })
     }
   }
 
-  fetchPopularMovies = async() => {
+  fetchPopularMovies = async () => {
     const url = "https://api.themoviedb.org/3/movie/popular?api_key=93b214404de014118b64ce033e70ac99&language=en-US&page=1"
-    try{
+    try {
       const options = await fetchOptions('GET')
-      const movies = await fetchData(url,options)
+      const movies = await fetchData(url, options)
       this.props.popularMovies(movies.results)
-      
 
-    }catch(error){
+
+    } catch (error) {
       this.setState({
         error: error.message
       })
     }
   }
-   
+
   render() {
     console.log(this.props, "app props")
     return (
@@ -76,43 +77,61 @@ export class App extends Component {
           <div className="heading-title">
             <h1>MovieTrack</h1>
             {/* (props)=> <Login {...props} /> */}
-            
+
           </div>
           <div>
             <NavLink to="/Login" className="login-button">Login</NavLink>
-            <NavLink to="/signup" className ="signup-button">Signup</NavLink>
-            <Route path='/Login'  component = { Login }/>
-            <Route path='/Signup'  component = { Signup }/>
-            
-            
+            <NavLink to="/signup" className="signup-button">Signup</NavLink>
+            <Route path='/Login' component={Login} />
+            <Route path='/Signup' component={Signup} />
+
+
+
           </div>
         </header>
         <section className="movies-container">
-         <div className="now-playing movie-section">
-         <h1>Now playing movies</h1>
-            <Nowplayingmovies/>
-         </div>
-         <div className="toprated-movies movie-section">
-         <h1>Top rated movies</h1>
-          <Toprated/>
-         </div>
-         <div className="popular-movies movie-section">
-         <h1>Popular movies</h1>
-         <Popularmovies/>
-         </div>
-        
+          <Route exact  path='/movie/:id' render={({ match }) => {
+            const { id } = match.params;
+            const { nowPlaying, topRatedMovies2, popularMovies2 } = this.props
+            const allMovies = nowPlaying.concat(topRatedMovies2, popularMovies2)
+            const foundMovie = allMovies.find((movie) => {
+              return movie.id == id;
+            })
+            return <Moviedetails {...foundMovie}/>
+            
+          }} />
+
+         
+          <div className="now-playing movie-section">
+            <h1>Now playing movies</h1>
+            <Nowplayingmovies />
+          </div>
+          <div className="toprated-movies movie-section">
+            <h1>Top rated movies</h1>
+            <Toprated />
+          </div>
+          <div className="popular-movies movie-section">
+            <h1>Popular movies</h1>
+            <Popularmovies />
+          </div>
+          
         </section>
-        
+
       </div>
     );
   }
 }
+export const mapStateToProps = (state) => ({
+  nowPlaying: state.nowPlayingMovies,
+  topRatedMovies2: state.topRatedMovies,
+  popularMovies2: state.popularMovies
+})
 
 export const mapDispatchToProps = (dispatch) => ({
   nowPlayingMovies: (movies) => dispatch(nowPlayingMovies(movies)),
   topRatedMovies: (movies) => dispatch(topRatedMovies(movies)),
   popularMovies: (movies) => dispatch(popularMovies(movies))
-  
+
 })
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
