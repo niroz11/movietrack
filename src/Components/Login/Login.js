@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import user from '../../Assets/Images/user.png'
 import password from '../../Assets/Images/password-icon.png'
 import './Login.css'
-import { fetchUserFavorites } from '../../utils/fetchFavorites';
+import  { fetchUserFavorites }  from '../../utils/fetchUserFavorites';
 
 class Login extends Component {
     constructor(props) {
@@ -46,6 +46,7 @@ class Login extends Component {
                 })
                 const favorites = await fetchUserFavorites(result.data.id)
                 this.props.updateUser(result.data.id, result.data.email, favorites)
+                
                 
             }
             

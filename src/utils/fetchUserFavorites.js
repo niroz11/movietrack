@@ -14,3 +14,5 @@ export const fetchUserFavorites = async(id) => {
     console.log("error fetching favorites")
     }
 }
+
+// export default fetchUserFavorites

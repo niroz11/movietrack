@@ -83,9 +83,9 @@ export class App extends Component {
             { typeof this.props.user.id === 'number' ? <NavLink to="/logout" className="login-button" onClick={this.props.logOutUser}>Logout</NavLink> : <NavLink to="/login" className="login-button">Login</NavLink>}
             <NavLink to="/signup" className="signup-button">Signup</NavLink>
             <NavLink to="/favorites" className="favorites-button">Favorites</NavLink>
-            <Route path='/login' component={Login} />
-            <Route path='/signup' component={Signup} />
-            <Route path='/favorites' component={Favorites}/>
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup} />
+            <Route exact path='/favorites' component={Favorites}/>
           </div>
         </header>
         <section className="movies-container">
