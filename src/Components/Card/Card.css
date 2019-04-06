@@ -2,3 +2,19 @@
     transform: scale(1.15);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+
+.movie-card{
+    
+    display: flex;
+    flex-direction: column;
+    position:relative;
+    width:20%;
+    margin-top:20px;
+    margin-right:2px;  
+}
+
+.movie-card button{
+    position: absolute;
+    left: 142px;
+}
+

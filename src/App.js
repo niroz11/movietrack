@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
 import Login from './Components/Login/Login'
 import Signup from './Components/Signup/Signup'
+import Favorites from './Components/Favorites/Favorites'
 import Nowplayingmovies from './Components/Nowplayingmovies/Nowplayingmovies'
 import Toprated from './Components/Toprated/Toprated'
 import Popularmovies from './Components/Popularmovies/Popularmovies'
@@ -11,6 +12,7 @@ import { fetchData } from './utils/fetchData'
 import { connect } from 'react-redux'
 import { nowPlayingMovies, topRatedMovies, popularMovies, logOutUser } from './actions/actions'
 import Moviedetails from './Components/Moviedetails/Moviedetails';
+import './App.css'
 
 
 
@@ -68,7 +70,7 @@ export class App extends Component {
       })
     }
   }
-  
+
   render() {
     console.log(this.props, "app props")
     return (
@@ -78,10 +80,12 @@ export class App extends Component {
             <h1>MovieTrack</h1>
           </div>
           <div>
-            { typeof this.props.user.id === 'number' ? <NavLink to="/Logout" className="login-button" onClick={this.props.logOutUser}>Logout</NavLink> : <NavLink to="/Login" className="login-button">Login</NavLink>}
+            { typeof this.props.user.id === 'number' ? <NavLink to="/logout" className="login-button" onClick={this.props.logOutUser}>Logout</NavLink> : <NavLink to="/login" className="login-button">Login</NavLink>}
             <NavLink to="/signup" className="signup-button">Signup</NavLink>
-            <Route path='/Login' component={Login} />
-            <Route path='/Signup' component={Signup} />
+            <NavLink to="/favorites" className="favorites-button">Favorites</NavLink>
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Signup} />
+            <Route path='/favorites' component={Favorites}/>
           </div>
         </header>
         <section className="movies-container">
