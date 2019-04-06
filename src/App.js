@@ -9,7 +9,7 @@ import { APIkey } from './utils/APIkey'
 import { fetchOptions } from './utils/fetchOptions'
 import { fetchData } from './utils/fetchData'
 import { connect } from 'react-redux'
-import { nowPlayingMovies, topRatedMovies, popularMovies } from './actions/actions'
+import { nowPlayingMovies, topRatedMovies, popularMovies, logOutUser } from './actions/actions'
 import Moviedetails from './Components/Moviedetails/Moviedetails';
 
 
@@ -68,7 +68,7 @@ export class App extends Component {
       })
     }
   }
-
+  
   render() {
     console.log(this.props, "app props")
     return (
@@ -76,17 +76,12 @@ export class App extends Component {
         <header className="App-header">
           <div className="heading-title">
             <h1>MovieTrack</h1>
-            {/* (props)=> <Login {...props} /> */}
-
           </div>
           <div>
-            <NavLink to="/Login" className="login-button">Login</NavLink>
+            { typeof this.props.user.id === 'number' ? <NavLink to="/Logout" className="login-button" onClick={this.props.logOutUser}>Logout</NavLink> : <NavLink to="/Login" className="login-button">Login</NavLink>}
             <NavLink to="/signup" className="signup-button">Signup</NavLink>
             <Route path='/Login' component={Login} />
             <Route path='/Signup' component={Signup} />
-
-
-
           </div>
         </header>
         <section className="movies-container">
@@ -100,8 +95,6 @@ export class App extends Component {
             return <Moviedetails {...foundMovie}/>
             
           }} />
-
-         
           <div className="now-playing movie-section">
             <h1>Now playing movies</h1>
             <Nowplayingmovies />
@@ -124,13 +117,15 @@ export class App extends Component {
 export const mapStateToProps = (state) => ({
   nowPlaying: state.nowPlayingMovies,
   topRatedMovies2: state.topRatedMovies,
-  popularMovies2: state.popularMovies
+  popularMovies2: state.popularMovies,
+  user: state.user
 })
 
 export const mapDispatchToProps = (dispatch) => ({
   nowPlayingMovies: (movies) => dispatch(nowPlayingMovies(movies)),
   topRatedMovies: (movies) => dispatch(topRatedMovies(movies)),
-  popularMovies: (movies) => dispatch(popularMovies(movies))
+  popularMovies: (movies) => dispatch(popularMovies(movies)),
+  logOutUser: () => dispatch(logOutUser())
 
 })
 
