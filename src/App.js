@@ -30,6 +30,10 @@ export class App extends Component {
     this.fetchPopularMovies()
   }
 
+  // Now playing movies needs to make an api call
+  // it is a get call
+  // it should return an array of movies
+  // I should make sure I handle any errors 
   fetchNowPlayingMovies = async () => {
     try {
       const options = await fetchOptions('GET')
@@ -72,7 +76,7 @@ export class App extends Component {
   }
 
   render() {
-    console.log(this.props, "app props")
+    
     return (
       <div className="App">
         <header className="App-header">
