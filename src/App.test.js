@@ -55,9 +55,6 @@ describe('App', () => {
     ))
     await wrapper.instance().fetchNowPlayingMovies()
     expect(wrapper.state("error")).toEqual("failed")
-
-
-
   })
 
   it('should use fetchNowPlayingMovies to call fetch', async () => {
@@ -70,7 +67,6 @@ describe('App', () => {
       user={{id:1, name: "taylor"}}
       />)
     await wrapper.instance().fetchNowPlayingMovies()
-    
     expect(wrapper.instance().props.nowPlayingMovies).toHaveBeenCalledWith(mockMovies)
   
     

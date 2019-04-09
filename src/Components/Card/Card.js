@@ -28,13 +28,12 @@ export class Card extends Component{
     validateFavorites = async () => {
         const { favorites } = this.props.user
         const existing = await favorites.find(favorite => favorite.movie_id === this.props.movies.id)
-        return (!existing ? this.fetchFavorites() : null)
+        return (existing ? this.deleteFavorites() : this.fetchFavorites())
        
     }
 
     fetchFavorites = async () => {
         const { movies, user } = this.props;
-        console.log(movies, "movie props")
         const url = "http://localhost:3000/api/users/favorites/new"
         const body = {
           movie_id: movies.id,
@@ -50,13 +49,30 @@ export class Card extends Component{
           const result = await fetchData(url, options)
           if(result.status === "success"){
             const favorites = await fetchUserFavorites(user.id)
-            return this.props.updateUser({id: user.id, name: user.name, favorites})
+            console.log(favorites, "favvvsss")
+            return this.props.updateUser(user.id, user.name, favorites)
           }
         } catch(error) {
           const message = "Sorry something went wrong, please refresh and try again."
           this.setState({
               error: message
           })
+        }
+      }
+
+      deleteFavorites = async () => {
+        const { user, movies } = this.props
+        const url = `http://localhost:3000/api/users/${user.id}/favorites/${movies.id}`
+        const body = { user_id: user.id, movie_id: movies.id}
+        try {
+          const options = await fetchOptions('DELETE', body)
+          const result = await fetchData(url, options)
+          if(result.status === "success"){
+            const favorites = await fetchUserFavorites(user.id)
+            return this.props.updateUser( user.id, user.name, favorites)
+          }
+        } catch(error) {
+          console.log("delete error", error)
         }
       }
 
