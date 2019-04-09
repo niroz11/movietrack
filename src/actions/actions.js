@@ -22,5 +22,8 @@ export const updateUser = (id,email,favorites) => ({
 })
 
 export const logOutUser = () => ({
-    type: "LOGOUT_USER"
+    type: "LOGOUT_USER",
+    id: "",
+    email:"",
+    favorites: []
 })

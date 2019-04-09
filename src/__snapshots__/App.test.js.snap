@@ -6,7 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <App
     nowPlayingMovies={[MockFunction]}
     popularMovies={[MockFunction]}
-    topratedMovies={[MockFunction]}
+    topRatedMovies={[MockFunction]}
     user={
       Object {
         "id": 1,

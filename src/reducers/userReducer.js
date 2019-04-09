@@ -7,7 +7,11 @@ export const userReducer = (state = {}, action) => {
                 favorites: action.favorites
             }
         case "LOGOUT_USER":
-            return {}
+            return {
+                id: "",
+                email:"",
+                favorites: []
+            }
         default:
             return state;
     }

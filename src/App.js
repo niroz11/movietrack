@@ -51,8 +51,7 @@ export class App extends Component {
       const options = await fetchOptions('GET')
       const movies = await fetchData(url, options)
       this.props.topRatedMovies(movies.results)
-
-
+      
     } catch (error) {
       this.setState({
         error: error.message

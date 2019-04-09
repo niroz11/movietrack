@@ -10,7 +10,6 @@ export class Popularmovies extends Component {
     }
     
     render(){
-        
         const movies = this.props.popularMovies.map((eachMovie) => {
             return <Card key={eachMovie.id} movies={eachMovie}/>
         })

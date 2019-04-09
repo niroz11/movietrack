@@ -26,8 +26,10 @@ export class Card extends Component{
       }
 
     validateFavorites = async () => {
+        console.log(this.props.movies, "movie props")
         const { favorites } = this.props.user
         const existing = await favorites.find(favorite => favorite.movie_id === this.props.movies.id)
+        console.log(existing, "existing")
         return (existing ? this.deleteFavorites() : this.fetchFavorites())
        
     }
@@ -49,7 +51,6 @@ export class Card extends Component{
           const result = await fetchData(url, options)
           if(result.status === "success"){
             const favorites = await fetchUserFavorites(user.id)
-            console.log(favorites, "favvvsss")
             return this.props.updateUser(user.id, user.name, favorites)
           }
         } catch(error) {
@@ -68,6 +69,7 @@ export class Card extends Component{
           const options = await fetchOptions('DELETE', body)
           const result = await fetchData(url, options)
           if(result.status === "success"){
+            
             const favorites = await fetchUserFavorites(user.id)
             return this.props.updateUser( user.id, user.name, favorites)
           }
