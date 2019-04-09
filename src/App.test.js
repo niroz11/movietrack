@@ -52,13 +52,8 @@ describe('App', () => {
 
 
   it('should dispatch nowPlayingMovies with mock movies', async () => {
-    // wrapper = shallow(<App nowPlayingMovies={mockNowPlayingMovies} 
-    //   topratedMovies={mockTopRatedMovies} 
-    //   popularMovies={mockPopularMovies}
-    //   user={{id:1, name: "taylor"}}
-    //   />)
     await wrapper.instance().fetchNowPlayingMovies()
-    expect(wrapper.instance().props.nowPlayingMovies).toHaveBeenCalledWith(mockMovies)
+    expect(mockNowPlayingMovies).toHaveBeenCalledWith(mockMovies)
 
 
   })
@@ -79,13 +74,35 @@ describe('App', () => {
   })
 
   it('should dispatch topRatedMovies with mock movies', async () => {
-    // wrapper = shallow(<App nowPlayingMovies={mockNowPlayingMovies}
-    //   topRatedMovies={mockTopRatedMovies}
-    //   popularMovies={mockPopularMovies}
-    //   user={{ id: 1, name: "taylor" }}
-    // />)
-
     await wrapper.instance().fetchTopRatedMovies()
     expect(mockTopRatedMovies).toHaveBeenCalled()
   })
+
+  it('should set an error state when fetch fails', async () => {
+    window.fetch = jest.fn().mockImplementationOnce(() => Promise.reject(
+      new Error('failed')
+    ))
+
+    await wrapper.instance().fetchTopRatedMovies()
+    expect(wrapper.state("error")).toEqual("failed")
+  })
+
+  it('should use fetchPopularMovies to call fetch ', () => {
+    expect(window.fetch).toHaveBeenCalled()
+  })
+
+  it('should dispatch popularMovies with mock movies', async () => {
+    await wrapper.instance().fetchPopularMovies()
+    expect(mockPopularMovies).toHaveBeenCalledWith(mockMovies)
+  })
+  it('should set an error state if fetching fails', async () => {
+    window.fetch = jest.fn().mockImplementationOnce(() => Promise.reject(
+      new Error('failed')
+    ))
+    await wrapper.instance().fetchPopularMovies()
+    expect(wrapper.state("error")).toEqual("failed")
+
+  })
+
+  
 });
