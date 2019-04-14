@@ -4,17 +4,36 @@
 }
 
 .movie-card{
-    
     display: flex;
     flex-direction: column;
     position:relative;
     width:20%;
     margin-top:20px;
-    margin-right:2px;  
+    margin-right:5px;  
+    margin-left:5px;
+
 }
 
-.movie-card button{
+.movie-card button{ 
+    left: 142px; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
     position: absolute;
-    left: 142px;
+    top: 2%;
+    right: 5%;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
+
+.movie-card button img{
+  width:40px;
+  height:40px;
+}
+
+.movie-card button:focus { 
+  outline: none; 
+}
+
 

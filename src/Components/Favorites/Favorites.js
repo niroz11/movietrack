@@ -5,27 +5,19 @@ import { Card } from '../Card/Card';
 import { updateUser } from '../../actions/actions'
 
 
-class Favorites extends Component {
+export class Favorites extends Component {
     constructor(props){
-        super(props)
-        this.state = {
-            favorites: false
-        }
-
-    }
-
-    
-    
+        super(props)}
     render(){
         console.log(this.props.user, "fav user")
         let displayFavorites;
-        if(this.props.favoriteMovies.length > 0){
+        if(this.props.favoriteMovies && this.props.favoriteMovies.length > 0){
             displayFavorites = this.props.favoriteMovies.map((eachMovie) => {
                 return <Card key={eachMovie.id} 
                              movies={eachMovie} 
                              id={eachMovie.movie_id} 
                              user={this.props.user}
-                             updateUser={this.props.updateuser}/>
+                             updateUser={this.props.updateUser}/>
             })
         } else {
             return <p>No favs to display</p>
@@ -34,24 +26,17 @@ class Favorites extends Component {
           <div>
               {displayFavorites}
           </div>
-      )
-        
-       
-        
-       
-      
-   
-    }
+      )}
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
     favoriteMovies: state.user.favorites,
     user: state.user.id,
     email: state.user.email,
     user: state.user
 })
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
     updateUser: (id, name, favorites) => dispatch(updateUser(id, name, favorites))
 })
 

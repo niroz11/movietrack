@@ -1,7 +1,5 @@
 import  { fetchUserFavorites }  from '../utils/fetchUserFavorites';
 
-
-
 describe('fetchUserFavorites', () => {
   let mockData;
 
@@ -29,16 +27,7 @@ describe('fetchUserFavorites', () => {
       status: 200,
       json: () => Promise.resolve(mockData),
     }));
-    console.log = jest.fn();
-    await fetchUserFavorites()
-    // log('error fetching favorites');
     
-    expect(console.log).toHaveBeenCalledWith('error fetching favorites');
-
-
-
-
-
   })
 
   

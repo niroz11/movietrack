@@ -80,9 +80,9 @@ export class App extends Component {
       <div className="App">
         <header className="App-header">
           <div className="heading-title">
-            <h1>MovieTrack</h1>
+            <img src={"https://fontmeme.com/permalink/190414/07ad8bb58089bb2e35d8c8dc539ac2cd.png"}></img>
           </div>
-          <div>
+          <div className="nav-bar">
             { typeof this.props.user.id === 'number' ? <NavLink to="/logout" className="login-button" onClick={this.props.logOutUser}>Logout</NavLink> : <NavLink to="/login" className="login-button">Login</NavLink>}
             <NavLink to="/signup" className="signup-button">Signup</NavLink>
             <NavLink to="/favorites" className="favorites-button">Favorites</NavLink>
@@ -102,16 +102,16 @@ export class App extends Component {
             return <Moviedetails {...foundMovie}/>
             
           }} />
+            <h1 className="movie-box-heading">Now playing movies</h1>
           <div className="now-playing movie-section">
-            <h1>Now playing movies</h1>
             <Nowplayingmovies />
           </div>
+            <h1 className="movie-box-heading">Top rated movies</h1>
           <div className="toprated-movies movie-section">
-            <h1>Top rated movies</h1>
             <Toprated />
           </div>
+            <h1 className="movie-box-heading">Popular movies</h1>
           <div className="popular-movies movie-section">
-            <h1>Popular movies</h1>
             <Popularmovies />
           </div>
           

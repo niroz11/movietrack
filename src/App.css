@@ -2,6 +2,47 @@
 .movie-section{
   overflow: scroll;
 }
+.nav-bar{
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width:15%;
+  justify-content: space-between;
+}
+
+.App-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading-title{
+  width:85%;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top:20px;
+}
+.App{
+  background-color: #1f1f1f;
+}
+.movie-box-heading{
+  color: #fcfcfc;
+  padding-left: 10px;
+  margin: 0;
+}
+.nav-bar a {
+  color:#f1f1f1;
+  text-decoration: none;
+  font-size: 20px;
+}
+.nav-bar a:hover{
+  text-decoration: underline;
+
+}
+
+
+
+
 
 
 

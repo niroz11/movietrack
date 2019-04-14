@@ -5,6 +5,7 @@ import { updateUser } from '../../actions/actions'
 import { fetchUserFavorites } from '../../utils/fetchUserFavorites'
 import { fetchData } from '../../utils/fetchData';
 import { fetchOptions } from '../../utils/fetchOptions'
+import heart from '../../Assets/Images/yellow-heart.png';
 import './Card.css';
 export class Card extends Component{
     constructor(){
@@ -14,7 +15,6 @@ export class Card extends Component{
         }
     }
     addFavorites = () => {
-        
         if (typeof this.props.user.id === "number") {
           return this.validateFavorites()
         } else {
@@ -26,9 +26,10 @@ export class Card extends Component{
       }
 
     validateFavorites = async () => {
+      console.log(this.props, "propsdddddddd")
         console.log(this.props.movies, "movie props")
         const { favorites } = this.props.user
-        const existing = await favorites.find(favorite => favorite.movie_id === this.props.movies.id)
+        const existing = await favorites.find(favorite => favorite.movie_id === this.props.id)
         console.log(existing, "existing")
         return (existing ? this.deleteFavorites() : this.fetchFavorites())
        
@@ -54,6 +55,7 @@ export class Card extends Component{
             return this.props.updateUser(user.id, user.name, favorites)
           }
         } catch(error) {
+          console.log(error, "this is error")
           const message = "Sorry something went wrong, please refresh and try again."
           this.setState({
               error: message
@@ -62,9 +64,9 @@ export class Card extends Component{
       }
 
       deleteFavorites = async () => {
-        const { user, movies } = this.props
-        const url = `http://localhost:3000/api/users/${user.id}/favorites/${movies.id}`
-        const body = { user_id: user.id, movie_id: movies.id}
+        const { user, id } = this.props
+        const url = `http://localhost:3000/api/users/${user.id}/favorites/${id}`
+        const body = { user_id: user.id, movie_id: id}
         try {
           const options = await fetchOptions('DELETE', body)
           const result = await fetchData(url, options)
@@ -82,14 +84,19 @@ export class Card extends Component{
        
         const { id } = this.props.movies
         const {movies } = this.props
+        const { favorites } = this.props.user
+        console.log(favorites,this.props.id, "favvvvssss")
         const poster = movies.poster_path
         const path = `https://image.tmdb.org/t/p/w185/${poster}`
         return(
+          
             <div className="movie-card">
                 <Link to={`/movie/${id}`}>
                 <img src={path}></img>
                 </Link>
-                <button onClick={()=>{this.addFavorites()}}>click</button>
+                <button onClick={()=>{this.addFavorites()}}>
+                  <img src={heart} alt="favorite movie button"></img>
+                </button>
                 {this.state.error && this.state.error}
             </div>
         )
@@ -98,6 +105,7 @@ export class Card extends Component{
 
 export const mapStateToProps = (state) => ({
     user: state.user,
+    favorites: state.user.favorites
     
 })
 
