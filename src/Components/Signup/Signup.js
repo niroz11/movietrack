@@ -5,6 +5,9 @@ import { updateUser } from "../../actions/actions"
 import { Route, Redirect } from 'react-router'
 import { fetchData } from '../../utils/fetchData'
 import { fetchOptions } from '../../utils/fetchOptions'
+import user from '../../Assets/Images/user.png'
+import password from '../../Assets/Images/password-icon.png'
+import email from '../../Assets/Images/email-icon.png'
 import './Signup.css'
 
 
@@ -48,32 +51,41 @@ export class Signup extends Component {
 
   render(){
     return (
-      <section>
+      <section className="signup">
       <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="name"
-          value= {this.state.name}
-          onChange={this.handleChange}
-        />
-        <input
-          type="text"
-          name="email"
-          placeholder="email"
-          value= {this.state.email}
-          onChange={this.handleChange}
-        />
-        <input
-          type="text"
-          name="password"
-          placeholder="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
+        <div className="username-input input-box">
+          <img alt="user-icon" src={user}></img>
+          <input
+            type="text"
+            name="name"
+            placeholder="name"
+            value= {this.state.name}
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className="email-input input-box">
+          <img alt="user-icon" src={email}></img>
+          <input
+            type="text"
+            name="email"
+            placeholder="email"
+            value= {this.state.email}
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className="password-input input-box">
+          <img alt="password-icon" src={password}></img>
+          <input
+            type="text"
+            name="password"
+            placeholder="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+        </div>
         <button className="signup-button">Sign up</button>
       </form>
-      {this.state.error && this.state.error}
+      <p className="error-text">{this.state.error &&  this.state.error}</p>
       <Route exact path ='/Signup' render={()=> (
         this.props.user.id && <Redirect to="/"/>
       )}/>

@@ -1,0 +1,23 @@
+.signup{
+    display: flex;
+    background-color:rgba(0,0,0,.80);
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: fixed;
+    right: 460px;
+    top: 200px;
+    height: 500px;
+    width:500px;
+    padding:30px;
+    
+}
+
+form input{
+  margin-bottom:20px;
+}
+
+.error-text{
+  color:white;
+}
