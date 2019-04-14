@@ -1,0 +1,43 @@
+.movie-details-box{
+    display: flex;
+    background-color:black;
+    background-size: cover;
+    height: 700px;
+    width: 100%;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: fixed;
+    right: 460px;
+    top: 200px;
+    height: 330px;
+    width:700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 1rem rgba(0,0,0,.5)
+    
+}
+.movie-details-box:hover{
+  cursor: pointer;
+}
+
+.text-area{
+  color:white;
+}
+.movie-details-box button{
+  position: fixed;
+  top: 220px;
+  right: 500px;
+}
+.movie-details-box button:hover{
+  cursor: pointer;
+}
+.movie-details-box img{
+  margin-right:10px;
+}
+
+/* .box{
+  display: flex;
+} */

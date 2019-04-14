@@ -88,10 +88,10 @@ export class App extends Component {
             <NavLink to="/favorites" className="favorites-button">Favorites</NavLink>
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
-            <Route exact path='/favorites' component={Favorites}/>
           </div>
         </header>
         <section className="movies-container">
+          <Route exact path='/favorites' component={Favorites}/>
           <Route exact  path='/movie/:id' render={({ match }) => {
             const { id } = match.params;
             const { nowPlaying, topRatedMovies2, popularMovies2 } = this.props

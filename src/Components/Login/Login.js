@@ -17,7 +17,8 @@ class Login extends Component {
             email: "",
             password: "",
             error: "",
-            id: false
+            id: false,
+            redirect: false
         }
     }
     handleChange = (e) => {
