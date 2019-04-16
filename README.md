@@ -12,6 +12,7 @@ In this application, I utilized The Movie DB API to create a personalized movie 
 * Clone this repo (https://github.com/turingschool-examples/movie-tracker)
 * Run npm install from the root directory
 * Run npm start and it should start via localhost
+* note: Postgres required
 
 ### Desktop View
 <img width="1433" alt="Screen Shot 2019-04-16 at 2 43 00 PM" src="https://user-images.githubusercontent.com/41176822/56243053-e52e9500-6056-11e9-863a-be836218e072.png">
