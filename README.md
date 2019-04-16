@@ -1,4 +1,4 @@
-# MOVIE-FLIX
+# MOVIE-TRACK
 
 ### Abstract:
 In this application, I utilized The Movie DB API to create a personalized movie application to allow users to view, favorite, and search for movies within the database. The main goal of the project was to allow users to create accounts, favorite movies, and then be able to view those favorited movies when signing back in at a later time. This application contains a backend server to validate users as well as a client-side frontend created using create-react-app. 
